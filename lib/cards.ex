@@ -1,8 +1,14 @@
 defmodule Cards do
   @spec create_deck :: [<<_::24, _::_*16>>, ...]
   def create_deck do
-    ["Ace", "Two", "Three"]
+    values = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"]
+    suits = ["Spades", "Clubs", "Hearts", "Diamonds"]
+
+    for suit <- suits, value <- values do
+      "#{value} of #{suit}"
+    end
   end
+
 
   def shuffle(deck) do
     Enum.shuffle(deck)
@@ -10,5 +16,9 @@ defmodule Cards do
 
   def contains?(deck, card) do
     Enum.member?(deck, card)
+  end
+
+  def deal(deck, hand_size) do
+    Enum.split(deck, hand_size)
   end
 end
